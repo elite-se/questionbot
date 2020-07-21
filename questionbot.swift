@@ -68,7 +68,7 @@ for argument in CommandLine.arguments[1..<CommandLine.arguments.count] {
     case "-h", "--help":
         print(
 """
-This tool expects a file containing \"Tasks\" in Markdown format.
+This tool expects a file containing \"Questions\" in Markdown format.
 h1 Elements are interpreted as Chapters, h2 Elements as Questions
 and Text under h2 Elements as answers to said questions.
 
@@ -122,12 +122,27 @@ if (chapters.count > 1) {
 let selectedChapter = chapters[index]
 print("Selected chapter \(index): \(selectedChapter.title)")
 
+var correctCnt = 0
 selectedChapter.tasks.shuffled().enumerated().forEach { (index, task) in
     // Clear screen
     print("", terminator: "\u{001B}[2J\u{001B}[0;01H")
-    print("Task \(index)/\(selectedChapter.tasks.count): \u{001B}[1m\(task.statement)\u{001B}[0m")
+    print("Question \(index)/\(selectedChapter.tasks.count): \u{001B}[1m\(task.statement)\u{001B}[0m")
     _ = readLine()
     print("\u{001B}[3m\(task.solution)\u{001B}[0m")
-    _ = readLine()
+    
+    print("Was your answer correct? [y/n]: ", terminator: "")
+    var answer = readLine()
+    while answer == nil || (answer! != "y" && answer! != "n") {
+        print("Unrecognized input. Was your answer correct? [y/n]: ", terminator: "")
+        answer = readLine()
+    }
+    
+    if (answer! == "y") {
+        correctCnt += 1
+    }
 }
+
+print("", terminator: "\u{001B}[2J\u{001B}[0;01H")
+var correctPercentage = Int(Float(correctCnt) / Float(selectedChapter.tasks.count) * 100)
+print("\u{001B}[1mCongratulations, you answered \(correctCnt) out of \(selectedChapter.tasks.count) questions correctly (\(correctPercentage)%)\u{001B}[0m")
 
