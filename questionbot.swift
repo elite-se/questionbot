@@ -105,7 +105,7 @@ let chapters = parse(taskfile: taskfile)
 
 print("Identified the following Chapters:")
 chapters.enumerated().forEach { (index, chapter) in
-    print("  [\(index)]: \(chapter.title) (\(chapter.tasks.count) tasks)")
+    print("  [\(index)]: \(chapter.title) (\(chapter.tasks.count) questions)")
 }
 
 var index = 0
