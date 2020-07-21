@@ -151,5 +151,5 @@ while !questions.isEmpty {
 
 print("", terminator: "\u{001B}[2J\u{001B}[0;01H")
 var correctPercentage = Int(Float(correctCnt) / Float(answeredCnt) * 100)
-print("\u{001B}[1mCongratulations, you answered \(correctCnt) out of \(selectedChapter.tasks.count) questions correctly (\(correctPercentage)%)\u{001B}[0m")
+print("\u{001B}[1mCongratulations, you answered \(correctCnt) out of \(answeredCnt) questions correctly (\(correctPercentage)%)\u{001B}[0m")
 
