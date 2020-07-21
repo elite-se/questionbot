@@ -13,7 +13,7 @@ Example task file:
 
 ## Give 5 reasons to stop procrastinating
 * Better grades
-* Less halve-finished sideprojects
+* Less half-finished sideprojects
 
 ...
 ```
