@@ -103,6 +103,8 @@ let chapters = parse(taskfile: taskfile)
 //  COMMAND LINE INTERFACE
 // ========================
 
+// Clear screen
+print("", terminator: "\u{001B}[2J\u{001B}[0;01H")
 print("Identified the following Chapters:")
 chapters.enumerated().forEach { (index, chapter) in
     print("  [\(index)]: \(chapter.title) (\(chapter.tasks.count) questions)")
@@ -111,9 +113,12 @@ chapters.enumerated().forEach { (index, chapter) in
 var index = 0
 if (chapters.count > 1) {
     print("Which chapter do you want to practice? ", terminator: "")
+    fflush(stdout)
     var answer = readLine()
+    fflush(stdout)
     while answer == nil || Int(answer!) == nil || Int(answer!)! >= chapters.count || Int(answer!)! < 0 {
         print("Invalid answer, please choose one of (\(chapters.enumerated().map({ (i, _) in "\(i)" }).joined(separator: ", "))): ", terminator: "")
+    fflush(stdout)
         answer = readLine()
     }
 
@@ -132,13 +137,16 @@ while !questions.isEmpty {
     // Clear screen
     print("", terminator: "\u{001B}[2J\u{001B}[0;01H")
     print("Question \(answeredCnt)/\(answeredCnt + questions.count): \u{001B}[1m\(task.statement)\u{001B}[0m")
+    fflush(stdout)
     _ = readLine()
     print("\u{001B}[3m\(task.solution)\u{001B}[0m")
     
     print("Was your answer correct? [y/n]: ", terminator: "")
+    fflush(stdout)
     var answer = readLine()
     while answer == nil || (answer! != "y" && answer! != "n") {
         print("Unrecognized input. Was your answer correct? [y/n]: ", terminator: "")
+    fflush(stdout)
         answer = readLine()
     }
     
