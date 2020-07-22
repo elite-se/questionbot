@@ -27,7 +27,12 @@ func parse(taskfile path: String) -> [Chapter] {
         if line.starts(with: "# ") {
             // New chapter
             let title = String(line.suffix(from: line.index(line.startIndex, offsetBy: 2)))
-            
+
+            if let statement = currentStatement, let solution = currentSolution {
+                currentChapter.tasks.append(Task(statement: statement, solution: solution))
+                currentStatement = nil
+                currentSolution = nil
+            }
             if currentChapter.tasks.count > 0 {
                 chapters.append(currentChapter)
             }
