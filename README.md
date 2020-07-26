@@ -20,3 +20,10 @@ Example task file:
 
 # Usage
 `$ swift questionbot.swift tasks.md`
+
+# Credit
+This project started out as a quick and rough prototype for a fun way to study
+for memorization exams. Other members of the elite-se community significantly 
+helped to turn questionbot into a useful utility. I want to thank all who
+contributed directly or indirectly. Some contributions are not reflected by the
+version history. 
